@@ -3,7 +3,7 @@ require('dotenv').config()
 const path = require('path')
 const {
   GATSBY_ACTIVE_ENV,
-  GATSBY_CMS_URL,
+  // GATSBY_CMS_URL,
   GATSBY_SITE_URL,
   GATSBY_TITLE,
   GATSBY_DESCRIPTION,
@@ -50,16 +50,16 @@ module.exports = {
         extensions: [],
       },
     },
-    {
-      resolve: 'gatsby-source-strapi',
-      options: {
-        apiURL: GATSBY_CMS_URL,
-        contentTypes: [
-          // Insert list of resources
-        ],
-        queryLimit: 1000,
-      },
-    },
+    // {
+    //   resolve: 'gatsby-source-strapi',
+    //   options: {
+    //     apiURL: GATSBY_CMS_URL,
+    //     contentTypes: [
+    //       // Insert list of resources
+    //     ],
+    //     queryLimit: 1000,
+    //   },
+    // },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {
@@ -85,5 +85,6 @@ module.exports = {
     'gatsby-plugin-sitemap',
     'gatsby-plugin-offline',
     'gatsby-plugin-sass',
+    `gatsby-plugin-postcss`,
   ],
 }
