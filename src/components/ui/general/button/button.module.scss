@@ -1,0 +1,54 @@
+@import 'src/styles/variables';
+.button {
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: white;
+  background-color: $primary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  border: none;
+  border-radius: 10px;
+  transition: all 0.1s ease-in-out;
+  padding-left: $p-xl;
+  padding-right: $p-xl;
+  white-space: nowrap;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.05) !important;
+  }
+  &:focus {
+    box-shadow: none !important;
+  }
+  &:active {
+    transform: scale(0.95) !important;
+  }
+}
+.primary {
+  background-color: #353057;
+  &:hover,
+  &:focus {
+    background-color: #353057;
+  }
+  &:active {
+    background-color: #353057 !important;
+  }
+}
+.secondary {
+  color: $primary;
+  background-color: transparent;
+  border: 2px solid $primary;
+  &:hover,
+  &:focus {
+    color: $primary;
+    background-color: transparent;
+    border: 2px solid $primary;
+  }
+  &:active {
+    color: $primary !important;
+    background-color: transparent !important;
+    border: 2px solid $primary !important;
+  }
+}

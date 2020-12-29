@@ -1,0 +1,33 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+.navbar {
+  background-color: transparent;
+  padding: 1.5rem 0;
+  transition: all 0.1s ease-in-out;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+}
+.nav {
+  display: none;
+  @include breakpoint('tablet') {
+    display: flex;
+  }
+}
+.nav-link {
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  color: $primary;
+  margin: 0 1.5rem;
+  padding: 0.25rem 0;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    border-bottom: 2px solid $primary;
+    color: $primary;
+  }
+}
+.open-icon {
+  display: block;
+  @include breakpoint('tablet') {
+    display: none;
+  }
+}

@@ -1,0 +1,22 @@
+@import 'mixins';
+
+.container {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+  @media (min-width: 1200px) {
+    max-width: 1200px;
+  }
+}
+.dropdown-toggle {
+  &:after {
+    display: none;
+  }
+}
+.dropdown-menu {
+  left: -280%;
+  box-shadow: 0 5px 17px rgba(43, 42, 47, 0.1);
+  border: none;
+  @media (max-width: 1200px) {
+    left: -300%;
+  }
+}

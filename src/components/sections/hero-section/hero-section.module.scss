@@ -1,0 +1,19 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.hero-block {
+  display: flex;
+  height: 95vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.pic {
+  width: 300px;
+  @include breakpoint('tablet') {
+    width: 500px;
+  }
+}
+.hero-title {
+  font-size: 24px;
+}
