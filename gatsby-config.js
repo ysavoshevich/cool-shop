@@ -8,6 +8,8 @@ const {
   GATSBY_TITLE,
   GATSBY_DESCRIPTION,
   GOOGLE_ANALYTICS_ID,
+  GATSBY_SHOPIFY_SHOP_NAME,
+  GATSBY_SHOPIFY_ACCESS_TOKEN,
 } = process.env
 const isProd = GATSBY_ACTIVE_ENV === 'production'
 
@@ -19,6 +21,7 @@ module.exports = {
     author: '@unikorns',
   },
   plugins: [
+    '@chakra-ui/gatsby-plugin',
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-google-analytics',
@@ -50,16 +53,13 @@ module.exports = {
         extensions: [],
       },
     },
-    // {
-    //   resolve: 'gatsby-source-strapi',
-    //   options: {
-    //     apiURL: GATSBY_CMS_URL,
-    //     contentTypes: [
-    //       // Insert list of resources
-    //     ],
-    //     queryLimit: 1000,
-    //   },
-    // },
+    {
+      resolve: `gatsby-source-shopify`,
+      options: {
+        shopName: GATSBY_SHOPIFY_SHOP_NAME,
+        accessToken: GATSBY_SHOPIFY_ACCESS_TOKEN,
+      },
+    },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {
@@ -85,6 +85,5 @@ module.exports = {
     'gatsby-plugin-sitemap',
     'gatsby-plugin-offline',
     'gatsby-plugin-sass',
-    `gatsby-plugin-postcss`,
   ],
 }
