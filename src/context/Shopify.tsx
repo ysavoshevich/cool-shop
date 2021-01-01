@@ -27,7 +27,6 @@ export const ShopifyProvider = ({ children }) => {
   const [checkout, setCheckout] = useState<any>({})
   const [isCartOpen, setIsCartOpen] = useState(false)
   useEffect(() => {
-    console.log(process.env.GATSBY_SHOPIFY_ACCESS_TOKEN)
     if (localStorage.checkoutId) {
       fetchShopifyCheckout(localStorage.checkoutId)
     } else {
@@ -39,6 +38,7 @@ export const ShopifyProvider = ({ children }) => {
     try {
       // Wrong types in @types/shopify-buy. For example there's no webUrl property in provided types. So we have to cast to "any" to avoid problems. I leave it like that to create an issue/make a PR later.
       const shopifyCheckout: any = await client.checkout.create()
+      console.log(shopifyCheckout)
       setCheckout(shopifyCheckout)
 
       // Set checkout ID to localStorage so that we can keep the info after the user comes back/refreshes the page
@@ -51,6 +51,7 @@ export const ShopifyProvider = ({ children }) => {
   const fetchShopifyCheckout = async (checkoutId: string): Promise<void> => {
     try {
       const shopifyCheckout: any = await client.checkout.fetch(checkoutId)
+      console.log(shopifyCheckout)
       setCheckout(shopifyCheckout)
     } catch (error) {
       console.log(error)
@@ -59,8 +60,11 @@ export const ShopifyProvider = ({ children }) => {
 
   const addProduct = async (id: string, quantity: number): Promise<void> => {
     try {
+      console.log(id.split('__'))
+      // For some reason the ids you get with sourcing plugin for shopify look something like this "Shopify__ProductVariant__Z2lkOi8vc2dfghGlmeS9QcmdfgdWN0VmFyaWFdfgfdgC8zNzg5MDg0NTQ3NDk5NQ==
+      // But only the last part is valid, that's why we use split
       const updatedCheckout = await client.checkout.addLineItems(checkout.id, [
-        { variantId: id, quantity },
+        { variantId: id.split('__')[2], quantity },
       ])
       setCheckout(updatedCheckout)
     } catch (error) {

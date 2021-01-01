@@ -2,10 +2,15 @@ import React from 'react'
 import Img from 'gatsby-image'
 import Layout from '../components/Layout'
 import { graphql } from 'gatsby'
+import { useShopify } from '~/context/Shopify'
 
 const ProductPage = ({ data: { shopifyProduct: product } }) => {
+  const { addProduct } = useShopify()
+  const addProductHandler = () => {
+    addProduct(product.variants[0].id, 1)
+  }
   return (
-    <div>
+    <Layout>
       <div>
         <Img
           fluid={product.images[0].localFile.childImageSharp.fluid}
@@ -17,9 +22,9 @@ const ProductPage = ({ data: { shopifyProduct: product } }) => {
           {product.priceRange.maxVariantPrice.amount},
           {product.priceRange.maxVariantPrice.currencyCode}
         </p>
-        <button>Add to Cart</button>
+        <button onClick={addProductHandler}>Add to Cart</button>
       </div>
-    </div>
+    </Layout>
   )
 }
 
@@ -47,6 +52,9 @@ export const query = graphql`
           amount
           currencyCode
         }
+      }
+      variants {
+        id
       }
     }
   }
