@@ -21,7 +21,14 @@ module.exports = {
     author: '@unikorns',
   },
   plugins: [
-    '@chakra-ui/gatsby-plugin',
+    {
+      resolve: '@chakra-ui/gatsby-plugin',
+      options: {
+        isResettingCSS: true,
+        isUsingColorMode: false,
+        portalZIndex: 40,
+      },
+    },
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-google-analytics',

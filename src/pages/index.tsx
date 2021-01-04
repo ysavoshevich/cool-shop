@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import { graphql } from 'gatsby'
 import React from 'react'
 
@@ -6,10 +7,10 @@ import ProductsSection from '~/components/ProductsSection'
 import SEO from '~/components/SEO'
 
 const IndexPage = ({ data }) => (
-  <Layout>
+  <>
     <SEO title="Unikorns Starter Kit" />
     <ProductsSection products={data.allShopifyProduct.edges} />
-  </Layout>
+  </>
 )
 
 export const query = graphql`
@@ -21,10 +22,16 @@ export const query = graphql`
           title
           handle
           descriptionHtml
+          priceRange {
+            minVariantPrice {
+              amount
+              currencyCode
+            }
+          }
           images {
             localFile {
               childImageSharp {
-                fixed(width: 400) {
+                fixed(width: 300) {
                   ...GatsbyImageSharpFixed_withWebp
                 }
               }

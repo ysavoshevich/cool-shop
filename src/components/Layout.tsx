@@ -1,16 +1,14 @@
 import React from 'react'
-// import Navbar from '~/components/ui/general/navbar/navbar.component'
-import '~/styles/index.scss'
 import Cart from './Cart'
+import { AnimatePresence } from 'framer-motion'
+import '~/styles/index.scss'
 
-const Layout = ({ children }) => {
+const Layout = ({ children, ...props }) => {
   return (
-    <>
-      {/* <Navbar /> */}
-      <main>{children}</main>
-      <footer className={'text-center'}>© Unikorns Gatsby Starter</footer>
+    <AnimatePresence exitBeforeEnter>
+      <div key={props.location.pathname}>{children}</div>
       <Cart />
-    </>
+    </AnimatePresence>
   )
 }
 
