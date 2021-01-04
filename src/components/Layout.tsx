@@ -6,7 +6,7 @@ import '~/styles/index.scss'
 const Layout = ({ children, ...props }) => {
   return (
     <AnimatePresence exitBeforeEnter>
-      <div key={props.location.pathname}>{children}</div>
+      <div key={props?.location?.pathname}>{children}</div>
       <Cart />
     </AnimatePresence>
   )
